@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>gitbook-目录编写工具</title>
+    </head>
+    <body>
+        <div>
+            使用说明：</br>
+            1、将md文档内容放在左侧框<br/>
+            2、在MD文档相对路径中输入文档路径</br>
+            3、点击处理生成目录</br>
+            4、复制右侧到自己的SUMMARY.md中</br>
+        </div>
+        <div>
+            MD文档相对路径：<input id="mdPath" />&nbsp;&nbsp;<button onclick="exec()">处理</button>
+            <br />
+        </div>
+        <div>
+            <textarea id="inStr" rows="30" cols="80"></textarea>
+            <textarea id="outStr" rows="30"cols="80"></textarea>
+        </div>
+        <script type="text/javascript">
+            function exec(){
+                var instr = document.getElementById("inStr").value
+                var outstr = "";
+                if(instr){
+                    var instrs = instr.split("\n");
+                    // 获取md文档相对路径
+                    var mdpath = document.getElementById("mdPath").value;
+                    for(var i=0; i<instrs.length; i++){
+                        var _tmp = instrs[i];
+                        // #号开头为标题
+                        if(_tmp.charAt(0) == "#"){
+                            // 最终格式为：* [简介](README.md)
+                            // 根据第一个空格拆分标题级别和标题内容
+                            var _tmps = _tmp.split(" ");
+                            if(_tmps.length<2){
+                                continue;
+                            }
+                            var _level = _tmps[0]
+                            var _title = _tmps.slice(1).join(" ");
+                            // 级别#号个数减1乘以4个空格为当前标题缩进
+                            for(var j=0;j<_level.length-1;j++){
+                                outstr += "    ";
+                            }
+                            // 缩进后跟一个“* [” 表示为summary的目录
+                            outstr += "* [";
+                            // 所加上标题内容加“](“结尾
+                            outstr += _title + "]("
+                            // 处理标题内容1、所有的空格替换为”-“
+                            _title = _tmps.slice(1).join("-");
+                            // 处理标题内容2、所有的字母转换为小写
+                            _title = _title.toLowerCase();
+                            // 去掉特殊字符
+                            _title = fixTitle(_title);
+                            // 追加处理过的标题以“)\n”结尾
+                            if(i==0){
+                                outstr += mdpath+")\n";
+                            } else {
+                                outstr += mdpath+"#"+_title+")\n";
+                            }
+                        }
+                    }
+                }
+                document.getElementById("outStr").value = outstr;               
+            }
+            function fixTitle(title){
+                var _ret="";
+                var ex = "!@#$%^&*()_+=[]{};:\"'<,.>/?`~\\|";
+                for(var i = 0; i < title.length; i++){
+                    if(ex.indexOf(title.charAt(i)) < 0){
+                        _ret += title.charAt(i)
+                    }
+                }
+                return _ret;
+            }
+        </script>
+    </body>
+</html>
