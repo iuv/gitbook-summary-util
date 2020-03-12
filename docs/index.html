@@ -4,22 +4,53 @@
         <meta charset="UTF-8">
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <title>gitbook-目录编写工具</title>
+	<style>
+		body{
+		    font-size: 18px;
+		    font-family: "Microsoft Yahei",sans-serif;
+		    color: #333;
+		}
+	</style>
     </head>
     <body>
         <div>
             使用说明：</br>
-            1、将md文档内容放在左侧框<br/>
+            1、将MD文档内容放在左侧框<br/>
             2、在MD文档相对路径中输入文档路径</br>
             3、点击处理生成目录</br>
             4、复制右侧到自己的SUMMARY.md中</br>
         </div>
+	<div style="font-size: 56px;position: absolute;top: 80px;right: 100px;">gitbook目录辅助工具</div>
         <div>
-            MD文档相对路径：<input id="mdPath" />&nbsp;&nbsp;<button onclick="exec()">处理</button>
+            MD文档相对路径：<input id="mdPath" value="section1/README.md"/>&nbsp;&nbsp;<button onclick="exec()">处理</button>
             <br />
         </div>
         <div>
-            <textarea id="inStr" rows="30" cols="80"></textarea>
-            <textarea id="outStr" rows="30"cols="80"></textarea>
+            <textarea id="inStr" rows="30" cols="80">
+# 第一章 使用说明
+## 1 测试*标题
+1. 将MD文档内容放在左侧框
+2. 在MD文档相对路径中输入文档路径
+3. 点击处理生成目ko
+4. 复制右侧到自己的SUMMARY.md中
+
+### 1.1 Test.title(测试标题)
+1. 将MD文档内容放在左侧框
+2. 在MD文档相对路径中输入文档路径
+3. 点击处理生成目录
+4. 复制右侧到自己的SUMMARY.md中
+
+#### 1.1.1 Test.title(测试标题)
+1. 将MD文档内容放在左侧框
+2. 在MD文档相对路径中输入文档路径
+3. 点击处理生成目录
+4. 复制右侧到自己的SUMMARY.md中
+	    </textarea>
+            <textarea id="outStr" rows="30"cols="80">* [第一章 使用说明](section1/README.md)
+    * [1 测试*标题](section1/README.md#1-测试标题)
+        * [1.1 Test.title(测试标题)](section1/README.md#11-testtitle测试标题)
+            * [1.1.1 Test.title(测试标题)](section1/README.md#111-testtitle测试标题)
+	    </textarea>
         </div>
         <script type="text/javascript">
             function exec(){
@@ -78,4 +109,11 @@
             }
         </script>
     </body>
+	<script src='js/github-fork-ribbon.min.js'></script>
+	<script type="text/javascript">
+		var fg = new githubFork({
+		    type: 'black',
+		    url: 'http://github.com/merrier/',
+		});
+	</script>
 </html>
