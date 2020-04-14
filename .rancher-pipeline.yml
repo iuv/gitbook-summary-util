@@ -1,4 +1,4 @@
-﻿stages:
+stages:
 - name: dockerBuild
   steps:
   - publishImageConfig:
@@ -6,6 +6,6 @@
       buildContext: .
       tag: gitbook-util
       pushRemote: true
-      registry: index.docker.io
+      registry: 127.0.0.1:34839
 timeout: 60
 notification: {}
