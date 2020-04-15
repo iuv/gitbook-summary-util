@@ -6,6 +6,6 @@ stages:
       buildContext: .
       tag: gitbook-util
       pushRemote: true
-      registry: https://croe.harbor.ixx/v2/
+      registry: https://harbor.local:30003
 timeout: 60
 notification: {}
