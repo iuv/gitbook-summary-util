@@ -5,6 +5,7 @@ stages:
       dockerfilePath: ./Dockerfile
       buildContext: .
       tag: gitbook-util
+      pushRemote: true
       registry: https://croe.harbor.ixx/v2/
 timeout: 60
 notification: {}
