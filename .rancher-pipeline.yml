@@ -6,6 +6,6 @@ stages:
       buildContext: .
       tag: gitbook-util
       pushRemote: true
-      registry: https://harbor.local:30003
+      registry: 192.168.88.84:5000
 timeout: 60
 notification: {}
