@@ -1,6 +1,7 @@
 # gitbook-summary-util
 gitbook summary.md 编写辅助工具
 
+![demo.png](./demo.png)
 文章参考：https://jianpage.com/2020/03/11/gitbook_summary/
 
 使用说明：  
